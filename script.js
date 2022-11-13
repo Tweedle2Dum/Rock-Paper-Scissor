@@ -7,8 +7,7 @@ function removeimage(choice) {
         }
         const img = document.querySelector(".userimage")
         card.removeChild(img);
-    }
-    else if (choice=="c"){
+    } else if (choice == "c") {
         const card = document.querySelector(".computercard")
         if (document.querySelector(".computerimage") === null) {
             return
@@ -18,6 +17,15 @@ function removeimage(choice) {
         card.removeChild(img);
 
     }
+}
+function removetext() {
+        const container = document.querySelector(".result")
+        if (document.querySelector(".vs") === null) {
+            return
+        }
+        const txt = document.querySelector(".vs")
+        container.removeChild(txt);        
+     
 }
 
 function userchoice(Event) {
@@ -97,44 +105,54 @@ function computerchoice() {
 
 function victory(user, computer) {
 
+    
+    const result = document.querySelector(".result");
+    const ele = document.createElement("div")
+    ele.classList.add("vs");
+    removetext();
+
     if (user === computer) {
 
-        return "Its a draw!!";
+
+        ele.textContent = "It's a draw!!!";
+        
 
     } else if (user === "rock") {
 
         if (computer === "paper") {
+            ele.textContent = "Computer Wins!!!";
             counterc++;
 
-            return "Computer Wins!!";
         } else {
 
             counterp++;
-            return "Player Wins!!"
+            ele.textContent="Player Wins!!!"
         }
     } else if (user === "paper") {
 
         if (computer === "scissor") {
+            ele.textContent = "Computer Wins!!!";
             counterc++;
 
-            return "Computer Wins!!";
         } else {
             counterp++;
-
-            return "Player Wins!!"
+            ele.textContent="Player Wins!!!"
+            
         }
 
     } else if (user === "scissor") {
 
         if (computer === "rock") {
             counterc++;
-            return("Computer Wins!!");
+            ele.textContent = "Computer Wins!!!";
         } else {
             counterp++;
-            return("Player Wins!!")
+            ele.textContent="Player Wins!!!"
+
         }
 
     }
+    result.appendChild(ele);
 }
 
 const choicearray = ["rock", "paper", "scissor"]
